@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/everythingManagerLib.iml" filepath="$PROJECT_DIR$/everythingManagerLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/everythingmanager/everythingmanager.iml" filepath="$PROJECT_DIR$/everythingmanager/everythingmanager.iml" />
+    </modules>
+  </component>
+</project>
