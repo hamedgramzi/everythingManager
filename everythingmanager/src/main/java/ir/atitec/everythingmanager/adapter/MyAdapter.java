@@ -81,7 +81,7 @@ public class MyAdapter<T> extends ArrayAdapter<T> {
     public View getView(int position, View convertView, ViewGroup parent) {
         MyViewHolder h;
         if (convertView == null) {
-            convertView = inflater.inflate(res, null, false);
+            convertView = inflater.inflate(res, parent, false);
             try {
                 h = Holder.getConstructor(Context.class,View.class,ArrayAdapter.class).newInstance(context,convertView,this);
             }catch (Exception e){
