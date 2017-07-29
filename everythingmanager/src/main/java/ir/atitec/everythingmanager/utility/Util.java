@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Point;
+import android.os.Build;
+import android.view.Display;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
@@ -85,5 +88,29 @@ public class Util {
         }
         return sb.toString();
     }
+
+    public static int getWindowWidth(Activity activity) {
+        Display display = activity.getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+            display.getSize(size);
+            return size.x;
+        } else {
+            return display.getWidth();
+        }
+    }
+
+    public static int getWindowHeight(Activity activity) {
+        Display display = activity.getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+
+            display.getSize(size);
+            return size.y;
+        } else {
+            return display.getHeight();
+        }
+    }
+
 
 }
