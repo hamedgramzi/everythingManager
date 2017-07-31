@@ -1,22 +1,19 @@
-package ir.atitec.everythingmanager.adapter;
+package ir.atitec.everythingmanager.adapter.listview;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Filter;
 
 import java.util.List;
-
-import ir.atitec.everythingmanager.manager.FontManager;
 
 /**
  * Created by Hamed Ghayour on 21/11/2015.
  */
 public class MyAdapter<T> extends ArrayAdapter<T> {
 
-    private Class <? extends MyViewHolder> Holder;
+    private Class<? extends MyViewHolder> Holder;
     private int res;
     private Context context;
     private Object[] objects;
@@ -24,25 +21,23 @@ public class MyAdapter<T> extends ArrayAdapter<T> {
 
 
     /**
-     *
      * @param context
      * @param resource address of resouce in layout file
-     * @param holder you must write class extend MyViewHolder and pass the class here
+     * @param holder   you must write class extend MyViewHolder and pass the class here
      */
-    public MyAdapter(Context context, int resource,Class<? extends MyViewHolder> holder) {
+    public MyAdapter(Context context, int resource, Class<? extends MyViewHolder> holder) {
         super(context, resource);
         this.context = context;
-        myInit(holder,resource);
+        myInit(holder, resource);
     }
 
     /**
-     *
      * @param context
      * @param resource address of resouce in layout file
-     * @param items items you want see in your list
-     * @param holder you must write class extend MyViewHolder and pass the class here
+     * @param items    items you want see in your list
+     * @param holder   you must write class extend MyViewHolder and pass the class here
      */
-    public MyAdapter(Context context, int resource,Class<? extends MyViewHolder> holder, List<T> items) {
+    public MyAdapter(Context context, int resource, Class<? extends MyViewHolder> holder, List<T> items) {
         super(context, resource, items);
         this.context = context;
         myInit(holder, resource);
@@ -50,19 +45,18 @@ public class MyAdapter<T> extends ArrayAdapter<T> {
     }
 
     /**
-     *
      * @param context
      * @param resource address of resouce in layout file
-     * @param items items you want see in your list
-     * @param holder you must write class extend MyViewHolder and pass the class here
+     * @param items    items you want see in your list
+     * @param holder   you must write class extend MyViewHolder and pass the class here
      */
-    public MyAdapter(Context context, int resource,Class<? extends MyViewHolder> holder,T[] items) {
+    public MyAdapter(Context context, int resource, Class<? extends MyViewHolder> holder, T[] items) {
         super(context, resource, items);
         this.context = context;
-        myInit(holder,resource);
+        myInit(holder, resource);
     }
 
-    private void myInit(Class<? extends MyViewHolder> holder,int res){
+    private void myInit(Class<? extends MyViewHolder> holder, int res) {
         this.Holder = holder;
         this.res = res;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -71,9 +65,10 @@ public class MyAdapter<T> extends ArrayAdapter<T> {
     /**
      * if you want pass data to fill method, call this method and pass it anything you want
      * you must cast this objects in fill method to waht ever you like
+     *
      * @param objects anything you want
      */
-    public void setObjects(Object...objects){
+    public void setObjects(Object... objects) {
         this.objects = objects;
     }
 
@@ -83,8 +78,9 @@ public class MyAdapter<T> extends ArrayAdapter<T> {
         if (convertView == null) {
             convertView = inflater.inflate(res, parent, false);
             try {
-                h = Holder.getConstructor(Context.class,View.class,ArrayAdapter.class).newInstance(context,convertView,this);
-            }catch (Exception e){
+                h = Holder.getConstructor(Context.class, View.class, ArrayAdapter.class).newInstance(context, convertView, this);
+                h.setObjects(objects);
+            } catch (Exception e) {
                 return convertView;
             }
             //FontManager.instance().setTypeface(convertView);
@@ -92,7 +88,7 @@ public class MyAdapter<T> extends ArrayAdapter<T> {
         } else {
             h = (MyViewHolder) convertView.getTag();
         }
-        h.fill(getItem(position),position,objects);
+        h.fill(getItem(position), position);
 
         return convertView;
     }

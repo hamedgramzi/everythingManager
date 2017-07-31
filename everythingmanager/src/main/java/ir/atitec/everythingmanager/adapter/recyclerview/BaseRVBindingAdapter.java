@@ -1,9 +1,10 @@
-package ir.atitec.everythingmanager.adapter;
+package ir.atitec.everythingmanager.adapter.recyclerview;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import java.lang.reflect.InvocationTargetException;
@@ -12,14 +13,14 @@ import java.util.ArrayList;
 /**
  * Created by white on 2016-08-17.
  */
-public class BaseRVAdapter<T extends BaseRVHolder> extends RecyclerView.Adapter<BaseRVHolder> {
+public class BaseRVBindingAdapter<T extends BaseRVBindingHolder> extends RecyclerView.Adapter<BaseRVBindingHolder> {
     private Context context;
     private int[] layout;
     private Class<T> holder;
     private ArrayList items;
     private Object[] objects;
 
-    public BaseRVAdapter(Context context,Class<T> holder,ArrayList items,int...layout){
+    public BaseRVBindingAdapter(Context context, Class<T> holder, ArrayList items, int...layout){
         this.context=context;
         this.holder=holder;
         this.layout=layout;
@@ -27,10 +28,13 @@ public class BaseRVAdapter<T extends BaseRVHolder> extends RecyclerView.Adapter<
     }
 
     @Override
-    public BaseRVHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(layout[viewType], parent,false);
+    public BaseRVBindingHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        ViewDataBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),layout[viewType],parent,false);
+        //View view= LayoutInflater.from(parent.getContext()).inflate(layout[viewType], parent,false);
         try {
-            return holder.getConstructor(View.class,Context.class).newInstance(view,context);
+            BaseRVBindingHolder b =  holder.getConstructor(ViewDataBinding.class,Context.class).newInstance(binding,context);
+            b.setObject(objects);
+            return b;
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -50,9 +54,9 @@ public class BaseRVAdapter<T extends BaseRVHolder> extends RecyclerView.Adapter<
     }
 
     @Override
-    public void onBindViewHolder(BaseRVHolder holder, int position) {
+    public void onBindViewHolder(BaseRVBindingHolder holder, int position) {
         if(holder!=null)
-            holder.fill(context,items.get(position),position,getItemViewType(position),getObjects());
+            holder.fill(items.get(position),position,getItemViewType(position));
 
     }
 
