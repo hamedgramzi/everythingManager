@@ -86,13 +86,14 @@ public class MyBindingAdapter<T> extends ArrayAdapter<T> {
             } catch (Exception e) {
                 return binding.getRoot();
             }
+            h.fill(getItem(position), position);
             convertView = binding.getRoot();
             //FontManager.instance().setTypeface(convertView);
             convertView.setTag(h);
         } else {
             h = (MyBindingViewHolder) convertView.getTag();
+            h.fill(getItem(position), position);
         }
-        h.fill(getItem(position), position);
 
         return convertView;
     }
