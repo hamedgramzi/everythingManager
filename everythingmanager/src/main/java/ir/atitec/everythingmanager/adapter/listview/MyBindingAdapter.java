@@ -81,19 +81,19 @@ public class MyBindingAdapter<T> extends ArrayAdapter<T> {
             ViewDataBinding binding = DataBindingUtil.inflate(inflater, res, parent, false);
 
             try {
-                h = Holder.getConstructor(Context.class, View.class, ArrayAdapter.class).newInstance(context, binding, this);
+                h = Holder.getConstructor(Context.class, ViewDataBinding.class, ArrayAdapter.class).newInstance(context, binding, this);
                 h.setObjects(objects);
             } catch (Exception e) {
                 return binding.getRoot();
             }
-            h.fill(getItem(position), position);
             convertView = binding.getRoot();
             //FontManager.instance().setTypeface(convertView);
             convertView.setTag(h);
         } else {
             h = (MyBindingViewHolder) convertView.getTag();
-            h.fill(getItem(position), position);
         }
+        h.fill(getItem(position), position);
+
 
         return convertView;
     }
