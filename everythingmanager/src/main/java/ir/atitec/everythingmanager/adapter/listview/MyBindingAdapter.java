@@ -98,4 +98,8 @@ public class MyBindingAdapter<T> extends ArrayAdapter<T> {
         return convertView;
     }
 
+    @Override
+    public View getDropDownView(int position, View convertView, ViewGroup parent) {
+        return getView(position, convertView, parent);
+    }
 }
