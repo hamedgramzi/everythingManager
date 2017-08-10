@@ -13,26 +13,26 @@ import java.util.ArrayList;
 /**
  * Created by white on 2016-08-17.
  */
-public class BaseRVBindingAdapter<T extends BaseRVBindingHolder> extends RecyclerView.Adapter<BaseRVBindingHolder> {
+public class BaseRVBindingAdapter<T extends BaseRVBindingHolder, MODEL> extends RecyclerView.Adapter<BaseRVBindingHolder> {
     private Context context;
     private int[] layout;
     private Class<T> holder;
-    private ArrayList items;
+    private ArrayList<MODEL> items;
     private Object[] objects;
 
-    public BaseRVBindingAdapter(Context context, Class<T> holder, ArrayList items, int...layout){
-        this.context=context;
-        this.holder=holder;
-        this.layout=layout;
-        this.items=items;
+    public BaseRVBindingAdapter(Context context, Class<T> holder, ArrayList<MODEL> items, int... layout) {
+        this.context = context;
+        this.holder = holder;
+        this.layout = layout;
+        this.items = items;
     }
 
     @Override
     public BaseRVBindingHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        ViewDataBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),layout[viewType],parent,false);
+        ViewDataBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), layout[viewType], parent, false);
         //View view= LayoutInflater.from(parent.getContext()).inflate(layout[viewType], parent,false);
         try {
-            BaseRVBindingHolder b =  holder.getConstructor(ViewDataBinding.class,Context.class).newInstance(binding,context);
+            BaseRVBindingHolder b = holder.getConstructor(ViewDataBinding.class, Context.class).newInstance(binding, context);
             b.setObject(objects);
             return b;
         } catch (InstantiationException e) {
@@ -47,17 +47,16 @@ public class BaseRVBindingAdapter<T extends BaseRVBindingHolder> extends Recycle
         return null;
     }
 
-    public Object getItem(int position){
-        if(position<items.size())
+    public MODEL getItem(int position) {
+        if (position < items.size())
             return items.get(position);
         return null;
     }
 
     @Override
     public void onBindViewHolder(BaseRVBindingHolder holder, int position) {
-        if(holder!=null)
-            holder.fill(items.get(position),position,getItemViewType(position));
-
+        if (holder != null)
+            holder.fill(items.get(position), position, getItemViewType(position));
     }
 
     @Override
@@ -70,12 +69,43 @@ public class BaseRVBindingAdapter<T extends BaseRVBindingHolder> extends Recycle
         return items.size();
     }
 
-    public void setObjects(Object...args) {
+    public void setObjects(Object... args) {
         this.objects = args;
     }
 
     public Object[] getObjects() {
         return objects;
+    }
+
+
+    public void removeItem(MODEL model) {
+        items.remove(model);
+        notifyDataSetChanged();
+    }
+
+    public void removeItem(int pos) {
+        items.remove(pos);
+        notifyDataSetChanged();
+    }
+
+    public void addItem(MODEL model) {
+        items.add(model);
+        notifyDataSetChanged();
+    }
+
+    public void addItem(MODEL model, int position) {
+        items.add(position, model);
+        notifyDataSetChanged();
+    }
+
+    public void replaceItem(MODEL model, int pos) {
+        if (pos > items.size()) {
+            items.add(model);
+        } else {
+            items.remove(pos);
+            items.add(pos, model);
+        }
+        notifyDataSetChanged();
     }
 }
 

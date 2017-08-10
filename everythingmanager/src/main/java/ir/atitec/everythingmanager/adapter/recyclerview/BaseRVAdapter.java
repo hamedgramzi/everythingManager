@@ -50,7 +50,7 @@ public class BaseRVAdapter<T extends BaseRVHolder, MODEL> extends RecyclerView.A
         return null;
     }
 
-    public Object getItem(int position) {
+    public MODEL getItem(int position) {
         if (position < items.size())
             return items.get(position);
         return null;
