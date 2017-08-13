@@ -127,6 +127,7 @@ public class BaseRVAdapter<T extends BaseRVHolder, MODEL> extends RecyclerView.A
         for(int i=0;i<list.length;i++){
             items.add(list[i]);
         }
+
         notifyDataSetChanged();
     }
 
