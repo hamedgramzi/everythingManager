@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by white on 2016-08-17.
@@ -106,6 +107,28 @@ public class BaseRVBindingAdapter<T extends BaseRVBindingHolder, MODEL> extends 
             items.add(pos, model);
         }
         notifyDataSetChanged();
+    }
+
+    public void removeAll() {
+        items.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addAll(List<MODEL> list) {
+        items.addAll(list);
+        notifyDataSetChanged();
+    }
+
+    public void addAll(MODEL... list) {
+        for (int i = 0; i < list.length; i++) {
+            items.add(list[i]);
+        }
+        notifyDataSetChanged();
+    }
+
+
+    public ArrayList<MODEL> getItems() {
+        return items;
     }
 }
 
