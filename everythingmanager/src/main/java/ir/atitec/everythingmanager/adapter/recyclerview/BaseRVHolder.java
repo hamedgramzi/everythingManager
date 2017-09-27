@@ -11,11 +11,13 @@ public abstract class BaseRVHolder<T> extends RecyclerView.ViewHolder {
     private View itemView;
     private Context context;
     private Object[] objects;
+    private RecyclerView.Adapter adapter;
 
-    public BaseRVHolder(View itemView, Context context) {
+    public BaseRVHolder(View itemView, Context context, RecyclerView.Adapter adapter) {
         super(itemView);
         this.itemView = itemView;
         this.context = context;
+        this.adapter = adapter;
     }
 
     public abstract void fill(T t, int pos, int viewType);
@@ -35,5 +37,9 @@ public abstract class BaseRVHolder<T> extends RecyclerView.ViewHolder {
 
     public View getItemView() {
         return itemView;
+    }
+
+    public RecyclerView.Adapter getAdapter(){
+        return adapter;
     }
 }

@@ -36,7 +36,7 @@ public class BaseRVAdapter<T extends BaseRVHolder, MODEL> extends RecyclerView.A
     public BaseRVHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(layout[viewType], parent, false);
         try {
-            BaseRVHolder b = holder.getConstructor(View.class, Context.class).newInstance(view, context);
+            BaseRVHolder b = holder.getConstructor(View.class, Context.class, RecyclerView.Adapter.class).newInstance(view, context,this);
             b.setObjects(objects);
             return b;
         } catch (InstantiationException e) {

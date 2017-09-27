@@ -11,6 +11,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * Created by white on 2016-08-17.
  */
@@ -33,7 +34,7 @@ public class BaseRVBindingAdapter<T extends BaseRVBindingHolder, MODEL> extends 
         ViewDataBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), layout[viewType], parent, false);
         //View view= LayoutInflater.from(parent.getContext()).inflate(layout[viewType], parent,false);
         try {
-            BaseRVBindingHolder b = holder.getConstructor(ViewDataBinding.class, Context.class).newInstance(binding, context);
+            BaseRVBindingHolder b = holder.getConstructor(ViewDataBinding.class, Context.class, RecyclerView.Adapter.class).newInstance(binding, context,this);
             b.setObject(objects);
             return b;
         } catch (InstantiationException e) {
