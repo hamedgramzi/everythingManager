@@ -19,6 +19,11 @@ public abstract class BaseRVHolder<T> extends RecyclerView.ViewHolder {
         this.context = context;
         this.adapter = adapter;
     }
+    public BaseRVHolder(View itemView, Context context) {
+        super(itemView);
+        this.itemView = itemView;
+        this.context = context;
+    }
 
     public abstract void fill(T t, int pos, int viewType);
 

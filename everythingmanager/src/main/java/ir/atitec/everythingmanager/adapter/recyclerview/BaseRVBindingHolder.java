@@ -23,6 +23,13 @@ public abstract class BaseRVBindingHolder<T> extends RecyclerView.ViewHolder {
         this.adapter = adapter;
     }
 
+    public BaseRVBindingHolder(ViewDataBinding binding, Context context) {
+        super(binding.getRoot());
+        this.binding = binding;
+        this.context = context;
+        itemView = binding.getRoot();
+    }
+
     public abstract void fill(T t, int pos, int viewType);
 
     public View getItemView() {
