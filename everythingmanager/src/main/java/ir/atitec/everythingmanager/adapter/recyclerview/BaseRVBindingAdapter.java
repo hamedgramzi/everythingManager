@@ -34,8 +34,9 @@ public class BaseRVBindingAdapter<T extends BaseRVBindingHolder, MODEL> extends 
         ViewDataBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), layout[viewType], parent, false);
         //View view= LayoutInflater.from(parent.getContext()).inflate(layout[viewType], parent,false);
         try {
-            BaseRVBindingHolder b = holder.getConstructor(ViewDataBinding.class, Context.class, RecyclerView.Adapter.class).newInstance(binding, context,this);
+            BaseRVBindingHolder b = holder.getConstructor(ViewDataBinding.class, Context.class).newInstance(binding, context);
             b.setObject(objects);
+            b.setAdapter(this);
             return b;
         } catch (InstantiationException e) {
             e.printStackTrace();

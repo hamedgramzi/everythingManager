@@ -13,12 +13,6 @@ public abstract class BaseRVHolder<T> extends RecyclerView.ViewHolder {
     private Object[] objects;
     private RecyclerView.Adapter adapter;
 
-    public BaseRVHolder(View itemView, Context context, RecyclerView.Adapter adapter) {
-        super(itemView);
-        this.itemView = itemView;
-        this.context = context;
-        this.adapter = adapter;
-    }
     public BaseRVHolder(View itemView, Context context) {
         super(itemView);
         this.itemView = itemView;
@@ -42,6 +36,10 @@ public abstract class BaseRVHolder<T> extends RecyclerView.ViewHolder {
 
     public View getItemView() {
         return itemView;
+    }
+
+    void setAdapter(RecyclerView.Adapter adapter) {
+        this.adapter = adapter;
     }
 
     public RecyclerView.Adapter getAdapter(){

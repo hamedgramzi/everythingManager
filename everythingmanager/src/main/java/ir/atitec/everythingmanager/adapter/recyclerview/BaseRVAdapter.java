@@ -36,8 +36,9 @@ public class BaseRVAdapter<T extends BaseRVHolder, MODEL> extends RecyclerView.A
     public BaseRVHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(layout[viewType], parent, false);
         try {
-            BaseRVHolder b = holder.getConstructor(View.class, Context.class, RecyclerView.Adapter.class).newInstance(view, context,this);
+            BaseRVHolder b = holder.getConstructor(View.class, Context.class).newInstance(view, context);
             b.setObjects(objects);
+            b.setAdapter(this);
             return b;
         } catch (InstantiationException e) {
             e.printStackTrace();
@@ -118,13 +119,13 @@ public class BaseRVAdapter<T extends BaseRVHolder, MODEL> extends RecyclerView.A
         notifyDataSetChanged();
     }
 
-    public void addAll(List<MODEL> list){
+    public void addAll(List<MODEL> list) {
         items.addAll(list);
         notifyDataSetChanged();
     }
 
-    public void addAll(MODEL...list){
-        for(int i=0;i<list.length;i++){
+    public void addAll(MODEL... list) {
+        for (int i = 0; i < list.length; i++) {
             items.add(list[i]);
         }
 

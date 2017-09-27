@@ -15,20 +15,14 @@ public abstract class BaseRVBindingHolder<T> extends RecyclerView.ViewHolder {
     private Object[] object;
     private RecyclerView.Adapter adapter;
 
-    public BaseRVBindingHolder(ViewDataBinding binding, Context context, RecyclerView.Adapter adapter) {
-        super(binding.getRoot());
-        this.binding = binding;
-        this.context = context;
-        itemView = binding.getRoot();
-        this.adapter = adapter;
-    }
-
     public BaseRVBindingHolder(ViewDataBinding binding, Context context) {
         super(binding.getRoot());
         this.binding = binding;
         this.context = context;
         itemView = binding.getRoot();
+
     }
+
 
     public abstract void fill(T t, int pos, int viewType);
 
@@ -50,6 +44,10 @@ public abstract class BaseRVBindingHolder<T> extends RecyclerView.ViewHolder {
 
     public void setObject(Object[] object) {
         this.object = object;
+    }
+
+    public void setAdapter(RecyclerView.Adapter adapter) {
+        this.adapter = adapter;
     }
 
     public RecyclerView.Adapter getAdapter() {
