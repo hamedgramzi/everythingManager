@@ -81,6 +81,7 @@ public class MyAdapter<T> extends ArrayAdapter<T> {
                 h = Holder.getConstructor(Context.class, View.class, ArrayAdapter.class).newInstance(context, convertView, this);
                 h.setObjects(objects);
             } catch (Exception e) {
+                e.printStackTrace();
                 return convertView;
             }
             //FontManager.instance().setTypeface(convertView);

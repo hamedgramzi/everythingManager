@@ -84,6 +84,7 @@ public class MyBindingAdapter<T> extends ArrayAdapter<T> {
                 h = Holder.getConstructor(Context.class, ViewDataBinding.class, ArrayAdapter.class).newInstance(context, binding, this);
                 h.setObjects(objects);
             } catch (Exception e) {
+                e.printStackTrace();
                 return binding.getRoot();
             }
             convertView = binding.getRoot();
