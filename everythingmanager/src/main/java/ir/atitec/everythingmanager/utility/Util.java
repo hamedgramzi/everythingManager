@@ -50,7 +50,7 @@ public class Util {
 //            return "";
 //        }
         Date date = new Date(timeMillies);
-        ManamPDUltimate m = new ManamPDUltimate(date.getYear() + 1900, date.getMonth(), date.getDate());
+        ManamPDUltimate m = new ManamPDUltimate(date.getYear() + 1900, date.getMonth()+1, date.getDate());
         if (!isFull)
             return m.getPersianShortDate();
         return m.getPersianLongDate();
