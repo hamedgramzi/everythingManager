@@ -141,16 +141,16 @@ public class Util {
 
     public static String convertNumbersToEnglish(String str) {
         String answer = str;
-        answer = answer.replace("١", "1");
-        answer = answer.replace("٢", "2");
-        answer = answer.replace("٣", "3");
-        answer = answer.replace("٤", "4");
-        answer = answer.replace("٥", "5");
-        answer = answer.replace("٦", "6");
-        answer = answer.replace("٧", "7");
-        answer = answer.replace("٨", "8");
-        answer = answer.replace("٩", "9");
-        answer = answer.replace("٠", "0");
+        answer = answer.replace("۱", "1");
+        answer = answer.replace("۲", "2");
+        answer = answer.replace("۳", "3");
+        answer = answer.replace("۴", "4");
+        answer = answer.replace("۵", "5");
+        answer = answer.replace("۶", "6");
+        answer = answer.replace("۷", "7");
+        answer = answer.replace("۸", "8");
+        answer = answer.replace("۹", "9");
+        answer = answer.replace("۰", "0");
         return answer;
     }
 }
