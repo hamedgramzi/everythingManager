@@ -161,4 +161,8 @@ public class MyFragmentManager {
         hashes = null;
     }
 
+    public static void destroy(FragmentActivity activity) {
+        hashes.remove(activity.getClass());
+    }
+
 }
