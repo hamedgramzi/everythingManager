@@ -71,9 +71,20 @@ public class FontManager {
         return instances.get(fontName);
     }
 
+    public static FontManager instance(Typeface typeface) {
+        FontManager fontManager = instances.get(typeface.toString());
+        if (fontManager == null) {
+            instances.put(typeface.toString(), new FontManager(typeface));
+        }
+        return instances.get(typeface.toString());
+    }
 
     private FontManager(String name) {
         customTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/" + name);
+    }
+
+    private FontManager(Typeface typeface) {
+        customTypeface = typeface;
     }
 
     /**
