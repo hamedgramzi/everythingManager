@@ -91,37 +91,48 @@ public class Util {
     }
 
     public static int getWindowWidth(Activity activity) {
-        Display display = activity.getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            display.getSize(size);
-            return size.x;
-        } else {
-            return display.getWidth();
-        }
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        activity.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
+        int width = displayMetrics.widthPixels;
+        return width;
+//        Display display = activity.getWindowManager().getDefaultDisplay();
+//        Point size = new Point();
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+//            display.getSize(size);
+//            return size.x;
+//        } else {
+//            return display.getWidth();
+//        }
     }
 
     public static int getWindowHeight(Activity activity) {
-        Display display = activity.getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        activity.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
-            display.getSize(size);
-            return size.y;
-        } else {
-            return display.getHeight();
-        }
+        int height = displayMetrics.heightPixels;
+        return height;
+//        Display display = activity.getWindowManager().getDefaultDisplay();
+//        Point size = new Point();
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+//
+//            display.getSize(size);
+//            return size.y;
+//        } else {
+//            return display.getHeight();
+//        }
     }
 
-    public static  int dpToPx(Context context, int dp) {
-        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-        return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+    public static  float dpToPx(Context context, int dp) {
+        return dp * context.getResources().getDisplayMetrics().density;
     }
 
-    public static int pxToDp(Context context, int px) {
-        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-        return Math.round(px / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+    public static float pxToDp(Context context, int px) {
+        return px / context.getResources().getDisplayMetrics().density;
     }
+
+
 
     public static String convertNumbersToPersian(String str)
     {

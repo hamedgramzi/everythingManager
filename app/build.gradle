@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
+def supportLib = "27.0.1"
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 28
     defaultConfig {
         applicationId "ir.atitec.testeverythingmanager"
         minSdkVersion 14
@@ -16,11 +16,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':everythingmanager')
+    implementation 'androidx.appcompat:appcompat:1.0.0'
 }
