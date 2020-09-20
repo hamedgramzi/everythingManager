@@ -1,13 +1,16 @@
 package ir.atitec.everythingmanager.adapter.recyclerview;
 
 import android.content.Context;
+
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -84,24 +87,31 @@ public class BaseRVAdapter<T extends BaseRVHolder, MODEL> extends RecyclerView.A
     }
 
 
-    public void removeItem(MODEL model) {
-        items.remove(model);
-        notifyDataSetChanged();
+    public boolean removeItem(MODEL model) {
+        int index = items.indexOf(model);
+        if (index != -1) {
+            items.remove(model);
+            notifyItemRemoved(index);
+            return true;
+        }
+        return false;
     }
 
-    public void removeItem(int pos) {
-        items.remove(pos);
-        notifyDataSetChanged();
+    public MODEL removeItem(int pos) {
+        MODEL m = items.remove(pos);
+        notifyItemRemoved(pos);
+        return m;
     }
 
     public void addItem(MODEL model) {
         items.add(model);
-        notifyDataSetChanged();
+        notifyItemInserted(items.size()-1);
+//        notifyDataSetChanged();
     }
 
     public void addItem(MODEL model, int position) {
         items.add(position, model);
-        notifyDataSetChanged();
+        notifyItemInserted(position-1);
     }
 
     public void replaceItem(MODEL model, int pos) {
@@ -111,7 +121,8 @@ public class BaseRVAdapter<T extends BaseRVHolder, MODEL> extends RecyclerView.A
             items.remove(pos);
             items.add(pos, model);
         }
-        notifyDataSetChanged();
+        notifyItemChanged(pos);
+//        notifyDataSetChanged();
     }
 
     public void removeAll() {
@@ -120,16 +131,18 @@ public class BaseRVAdapter<T extends BaseRVHolder, MODEL> extends RecyclerView.A
     }
 
     public void addAll(List<MODEL> list) {
+        int size = items.size();
         items.addAll(list);
-        notifyDataSetChanged();
+        notifyItemRangeInserted(size,list.size());
     }
 
     public void addAll(MODEL... list) {
-        for (int i = 0; i < list.length; i++) {
-            items.add(list[i]);
-        }
+        int size = items.size();
 
-        notifyDataSetChanged();
+        if(list != null){
+            items.addAll(Arrays.asList(list));
+            notifyItemRangeInserted(size,list.length);
+        }
     }
 
     public ArrayList<MODEL> getItems() {
