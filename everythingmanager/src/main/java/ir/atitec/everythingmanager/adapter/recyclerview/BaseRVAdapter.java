@@ -145,6 +145,19 @@ public class BaseRVAdapter<T extends BaseRVHolder, MODEL> extends RecyclerView.A
         }
     }
 
+    public void addAll(int pos,List<MODEL> list) {
+        items.addAll(pos,list);
+        notifyItemRangeInserted(pos,list.size());
+    }
+
+    public void addAll(int pos,MODEL... list) {
+        if(list != null){
+            items.addAll(pos,Arrays.asList(list));
+            notifyItemRangeInserted(pos,list.length);
+        }
+    }
+
+
     public ArrayList<MODEL> getItems() {
         return items;
     }
