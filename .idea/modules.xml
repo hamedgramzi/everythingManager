@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="everythingManagerLib/app" />
-      <module fileurl="file://$PROJECT_DIR$/everythingManagerLib.iml" filepath="$PROJECT_DIR$/everythingManagerLib.iml" group="everythingManagerLib" />
-      <module fileurl="file://$PROJECT_DIR$/everythingmanager/everythingmanager.iml" filepath="$PROJECT_DIR$/everythingmanager/everythingmanager.iml" group="everythingManagerLib/everythingmanager" />
+      <module fileurl="file://$PROJECT_DIR$/everythingManagerLib.iml" filepath="$PROJECT_DIR$/everythingManagerLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/everythingManagerLib.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/everythingManagerLib.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/everythingmanager/everythingManagerLib.everythingmanager.iml" filepath="$PROJECT_DIR$/.idea/modules/everythingmanager/everythingManagerLib.everythingmanager.iml" />
     </modules>
   </component>
 </project>

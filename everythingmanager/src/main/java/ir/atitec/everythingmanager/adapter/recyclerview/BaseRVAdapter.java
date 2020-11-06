@@ -114,6 +114,15 @@ public class BaseRVAdapter<T extends BaseRVHolder, MODEL> extends RecyclerView.A
         notifyItemInserted(position-1);
     }
 
+    public boolean updateItem(MODEL model) {
+        int index;
+        if((index = items.indexOf(model)) != -1){
+            replaceItem(model,index);
+            return true;
+        }
+        return false;
+    }
+
     public void replaceItem(MODEL model, int pos) {
         if (pos > items.size()) {
             items.add(model);
